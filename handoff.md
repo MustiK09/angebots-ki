@@ -63,8 +63,8 @@ WAGP1/
 ├─ scripts/
 │  └─ create_sample_template.py   # erzeugt sample_data/beispiel_angebot_vorlage.pdf
 ├─ sample_data/
-│  ├─ produktkatalog.csv          # 14 Beispielartikel (IT-Hardware/Zubehör/Dienstleistungen)
-│  └─ beispiel_email.txt          # Beispiel-Angebotsanfrage (Bürotech Nord GmbH)
+│  ├─ produktkatalog.csv          # 18 Beispielartikel (akkuhydraulische Werkzeuge + Zubehör)
+│  └─ beispiel_email.txt          # Beispiel-Angebotsanfrage (Industrieservice Westfalen GmbH)
 ├─ requirements.txt               # anthropic, streamlit, reportlab, pypdf, python-dotenv, pandas
 ├─ .env.example                   # Vorlage für ANTHROPIC_API_KEY
 ├─ README.md                      # ausführliche Doku

@@ -120,7 +120,7 @@ egal). Erforderlich sind mindestens **Artikelnummer**, **Name** und **Preis**:
 | Beschreibung | `Beschreibung`, `description`, `Details` |
 
 Alle **weiteren Spalten** werden automatisch als **Produktspezifikationen** behandelt
-(z. B. `cpu`, `ram_gb`, `display_inch`) und der KI für die Artikelauswahl mitgegeben.
+(z. B. `kraft_kn`, `arbeitsbereich`, `akkuspannung_v`) und der KI für die Artikelauswahl mitgegeben.
 
 Trennzeichen (`,` `;` Tab) und Preisformate (`1.299,00` oder `1299.00`) werden
 automatisch erkannt. Ein vollständiges Beispiel: [`sample_data/produktkatalog.csv`](sample_data/produktkatalog.csv).

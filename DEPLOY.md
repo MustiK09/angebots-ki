@@ -85,8 +85,8 @@ git push
   Ruhezustand. Öffne die URL **einige Minuten vor** deinem Vortrag einmal, damit sie
   wach und schnell ist.
 - **Schneller Demo-Ablauf:** „Beispielkatalog verwenden" + Beispiel-Anfrage einfügen
-  + „Angebot erstellen". (Für die Werkzeug-Variante: `produktkatalog_akkuhydraulik.csv`
-  hochladen und Text aus `beispiel_email_akkuhydraulik.txt` einfügen.)
+  + „Angebot erstellen". Der mitgelieferte Beispielkatalog (`produktkatalog.csv`)
+  enthält akkuhydraulische Werkzeuge; „📨 Beispiel-Anfrage laden" lädt die passende Anfrage.
 - **Backup einplanen:** Erzeuge vorab **ein fertiges Angebots-PDF** und mach ein paar
   **Screenshots / eine kurze Bildschirmaufnahme**. Falls Uni-WLAN oder API zicken,
   hast du trotzdem etwas zu zeigen.

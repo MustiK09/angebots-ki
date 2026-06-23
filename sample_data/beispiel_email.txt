@@ -1,28 +1,33 @@
-Von: Sandra Hofmann <s.hofmann@buerotech-nord.de>
-An: vertrieb@muster-gmbh.de
-Betreff: Angebotsanfrage IT-Ausstattung Außendienst
+Von: Thomas Reuter <t.reuter@industrieservice-westfalen.de>
+An: vertrieb@muster-werkzeuge.de
+Betreff: Angebotsanfrage akkuhydraulische Werkzeuge für unseren Wartungsfuhrpark
 
 Sehr geehrte Damen und Herren,
 
-für die Erweiterung unseres Außendienstteams benötigen wir neue IT-Ausstattung und
-bitten Sie um ein Angebot über folgende Positionen:
+wir erweitern den Werkzeugbestand unserer Servicetechniker und bitten Sie um ein
+Angebot über folgende akkuhydraulische Werkzeuge samt passendem Zubehör:
 
-- 10 leistungsfähige Business-Notebooks (15 Zoll, mindestens 16 GB RAM)
-- 10 passende USB-C Dockingstationen
-- 12 Monitore mit 27 Zoll
-- 10 Headsets für Videokonferenzen mit Geräuschunterdrückung
-- Einrichtung und Rollout der Geräte vor Ort (wir rechnen mit ca. 16 Stunden)
+- 2 akkuhydraulische Presszangen für Leiterquerschnitte bis 400 mm²
+- 3 kompakte Presswerkzeuge für kleinere Querschnitte bis 150 mm²
+- 2 akkuhydraulische Kabelschneider für Kabel bis Ø 95 mm
+- 1 akkuhydraulisches Pressgerät für Edelstahl-Pressfittings bis Ø 108 mm
+- 1 akkuhydraulische Lochstanze (M16 bis M63) für den Schaltschrankbau
+- 1 akkuhydraulisches Blindnietgerät für Nietdurchmesser bis 6 mm
+- ausreichend Wechselakkus (5 Ah) und einige Schnellladegeräte für die Geräte
+- 6 Transportkoffer sowie Hydrauliköl in passender Menge
+- einen Wartungs- und Kalibriervertrag für alle gelieferten Geräte
 
-Die Lieferung sollte möglichst bis zum 15.07.2026 erfolgen. Bitte weisen Sie die
-Preise netto aus und nennen Sie uns Ihre Zahlungs- und Lieferbedingungen.
+Bitte weisen Sie die Preise netto aus und nennen Sie uns Liefer- und
+Zahlungsbedingungen sowie die Garantie auf die Geräte. Die Ausrüstung wird
+kurzfristig benötigt – idealerweise innerhalb von zwei Wochen.
 
-Unsere Rechnungsanschrift:
-Bürotech Nord GmbH
-Hafenstraße 12
-20457 Hamburg
+Lieferanschrift:
+Industrieservice Westfalen GmbH
+Hüttenstraße 23
+44137 Dortmund
 
-Für Rückfragen erreichen Sie mich unter 040 9876543.
+Für Rückfragen erreichen Sie mich unter 0231 7654321.
 
 Mit freundlichen Grüßen
-Sandra Hofmann
-Einkauf · Bürotech Nord GmbH
+Thomas Reuter
+Technischer Einkauf · Industrieservice Westfalen GmbH

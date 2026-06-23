@@ -1,0 +1,19 @@
+sku,name,category,unit,unit_price,currency,description,kraft_kn,arbeitsbereich,akkuspannung_v,akku_kapazitaet_ah,gewicht_kg,warranty_months
+HW-CRP060,Akkuhydraulische Presszange 60 kN,Presswerkzeuge,Stück,2490.00,EUR,Akkuhydraulische Crimpzange für Kabelschuhe und Rohrkabelschuhe,60,6-300 mm²,18,2.0,4.5,36
+HW-CRP130,Akkuhydraulische Presszange 130 kN,Presswerkzeuge,Stück,3890.00,EUR,Leistungsstarke Crimpzange für große Leiterquerschnitte,130,10-400 mm²,18,5.0,6.2,36
+HW-CMP150,Kompakt-Presswerkzeug 150,Presswerkzeuge,Stück,1290.00,EUR,Leichtes Einhand-Presswerkzeug für den mobilen Einsatz,32,6-150 mm²,18,2.0,2.3,36
+HW-CUT045,Akkuhydraulischer Kabelschneider 45,Schneidwerkzeuge,Stück,2190.00,EUR,Akkuhydraulischer Schneider für Kupfer- und Aluminiumkabel,50,Ø 45 mm,18,2.0,4.1,36
+HW-CUT085,Akkuhydraulischer Kabelschneider 85,Schneidwerkzeuge,Stück,3490.00,EUR,Schneidet auch dickste Kabel sauber und mühelos,90,Ø 85 mm,18,5.0,6.8,36
+HW-PUN063,Akkuhydraulische Lochstanze,Stanzwerkzeuge,Stück,1890.00,EUR,Akkuhydraulische Stanze für Bleche und Schaltschrankbau,60,M16-M63,18,2.0,3.6,36
+HW-PRP054,Akkuhydraulisches Pressgerät für Rohrverbindungen,Presswerkzeuge,Stück,1690.00,EUR,Pressgerät für Sanitär- und Heizungsinstallation,32,Ø 12-54 mm,18,2.0,3.4,36
+HW-REB020,Akkuhydraulischer Bewehrungsschneider,Bewehrungswerkzeuge,Stück,1990.00,EUR,Schneidet Bewehrungsstahl schnell und gratfrei,90,Ø 20 mm,18,5.0,6.5,36
+HW-RBB016,Akkuhydraulischer Bewehrungsbieger,Bewehrungswerkzeuge,Stück,2290.00,EUR,Biegt Bewehrungsstahl präzise direkt auf der Baustelle,100,Ø 16 mm,18,5.0,7.2,36
+AKK-18-20,Akku 18V 2.0 Ah,Akkus & Ladegeräte,Stück,119.00,EUR,Li-Ion Wechselakku für alle 18V Geräte,,,18,2.0,0.4,24
+AKK-18-50,Akku 18V 5.0 Ah,Akkus & Ladegeräte,Stück,189.00,EUR,Li-Ion Wechselakku mit hoher Kapazität für lange Einsätze,,,18,5.0,0.7,24
+LAD-18,Schnellladegerät 18V,Akkus & Ladegeräte,Stück,149.00,EUR,Schnellladegerät für 18V Li-Ion Wechselakkus,,,18,,0.6,24
+MAT-SET,Presseinsatz-Set 16-teilig,Presseinsätze & Matrizen,Set,690.00,EUR,Set mit 16 Presseinsätzen für gängige Querschnitte,,6-300 mm²,,,2.5,24
+MAT-EINZ,Presseinsatz einzeln,Presseinsätze & Matrizen,Stück,59.00,EUR,Einzelner Presseinsatz nach Querschnitt wählbar,,diverse,,,0.2,24
+MES-CUT,Ersatzmesser-Set Kabelschneider,Zubehör,Set,189.00,EUR,Satz Ersatzmesser für akkuhydraulische Kabelschneider,,,,,0.3,12
+OEL-1L,Hydrauliköl 1 Liter,Zubehör,Stück,24.90,EUR,Spezial-Hydrauliköl für akkuhydraulische Werkzeuge,,,,,1.0,
+KOF-L,Transportkoffer L,Zubehör,Stück,149.00,EUR,Robuster Transportkoffer mit individueller Schaumstoffeinlage,,,,,2.8,24
+SRV-KAL,Wartung und Kalibrierung,Dienstleistungen,Gerät,129.00,EUR,Jährliche Wartung und Kalibrierung pro Gerät,,,,,,

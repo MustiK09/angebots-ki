@@ -1,0 +1,15 @@
+sku,name,category,unit,unit_price,currency,description,cpu,ram_gb,storage,display_inch,connectivity,warranty_months
+NB-1450,Business Notebook Pro 14,Notebooks,Stück,1299.00,EUR,Leichtes 14-Zoll Business-Notebook für mobiles Arbeiten,Intel Core i7-1365U,16,512 GB SSD,14,Wi-Fi 6E / BT 5.3,24
+NB-1560,Business Notebook Pro 15,Notebooks,Stück,1499.00,EUR,Leistungsstarkes 15-Zoll Notebook für anspruchsvolle Anwendungen,Intel Core i7-1365U,32,1 TB SSD,15.6,Wi-Fi 6E / BT 5.3,24
+NB-1410,Notebook Essential 14,Notebooks,Stück,899.00,EUR,Preiswertes Einstiegs-Notebook für Standardaufgaben,Intel Core i5-1335U,16,512 GB SSD,14,Wi-Fi 6 / BT 5.2,24
+MON-2700,UltraSharp Monitor 27,Monitore,Stück,329.00,EUR,27-Zoll IPS-Monitor mit USB-C und höhenverstellbarem Standfuß,,,,27,USB-C / HDMI / DP,36
+MON-2400,Office Monitor 24,Monitore,Stück,179.00,EUR,24-Zoll Full-HD Monitor für den Büroalltag,,,,24,HDMI / DP,36
+DOCK-USB3,USB-C Dockingstation Pro,Zubehör,Stück,219.00,EUR,Dockingstation mit Dual-Display-Unterstützung und Gigabit-LAN,,,,,USB-C / HDMI x2 / RJ45 / USB-A x4,24
+KB-MX1,Funktastatur Comfort,Zubehör,Stück,69.90,EUR,Ergonomische Funktastatur mit langer Akkulaufzeit,,,,,Funk 2.4 GHz / BT,24
+MOU-MX1,Funkmaus Precision,Zubehör,Stück,39.90,EUR,Leise Funkmaus mit wiederaufladbarem Akku,,,,,Funk 2.4 GHz / BT,24
+HS-VOICE,Headset VoiceClear,Zubehör,Stück,129.00,EUR,Stereo-Headset mit Mikrofon und aktiver Geräuschunterdrückung,,,,,USB / BT,24
+CAM-HD1,Webcam StreamHD,Zubehör,Stück,89.00,EUR,Full-HD Webcam mit Autofokus für Videokonferenzen,,,,,USB-A,24
+SSD-1TB,Externe SSD 1 TB,Speicher,Stück,119.00,EUR,Robuste externe SSD mit hoher Übertragungsrate,,,1 TB,,USB-C,36
+HUB-7,USB-C Hub 7-in-1,Zubehör,Stück,49.90,EUR,Kompakter 7-in-1 USB-C Hub für unterwegs,,,,,USB-C / HDMI / USB-A x3 / SD,24
+SRV-SETUP,IT-Einrichtung und Rollout,Dienstleistungen,Stunde,95.00,EUR,Installation Konfiguration und Einweisung vor Ort,,,,,,
+SRV-CARE,Wartungspaket Premium,Dienstleistungen,Jahr,499.00,EUR,Priorisierter Support und jährliche Wartung,,,,,,12

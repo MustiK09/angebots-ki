@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+
+# Secrets / Umgebung
+.env
+.streamlit/secrets.toml
+
+# Lokale Claude-Code-Einstellungen
+.claude/
+
+# Erzeugte Beispiel-Vorlage
+sample_data/beispiel_angebot_vorlage.pdf
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

@@ -127,6 +127,15 @@ automatisch erkannt. Ein vollständiges Beispiel: [`sample_data/produktkatalog.c
 
 ---
 
+## Optional: Daten aus AWS S3
+
+Produktkatalog und Vorlagen können auch aus einem **privaten Amazon-S3-Bucket** geladen
+werden (statt oder zusätzlich zum Upload). Einrichtung Schritt für Schritt:
+**[AWS_SETUP.md](AWS_SETUP.md)**. Ohne AWS-Konfiguration funktioniert die App
+unverändert über Upload und Beispieldaten.
+
+---
+
 ## Projektstruktur
 
 ```

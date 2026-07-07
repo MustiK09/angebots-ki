@@ -18,6 +18,7 @@ from angebots_ki.config import CompanyInfo, Settings
 from angebots_ki.errors import OfferGenerationError
 from angebots_ki.pipeline import generate_offer
 from angebots_ki.utils import extract_pdf_text, fmt_money, fmt_qty
+from angebots_ki import storage
 
 load_dotenv()
 
@@ -37,6 +38,15 @@ if not os.getenv("ANTHROPIC_API_KEY"):
     _cloud_key = _secret("ANTHROPIC_API_KEY")
     if _cloud_key:
         os.environ["ANTHROPIC_API_KEY"] = _cloud_key
+
+# AWS-Zugangsdaten & S3-Konfiguration aus den Secrets in die Umgebung spiegeln
+# (optional – ohne diese Werte bleibt die S3-Quelle einfach ausgeblendet).
+for _aws_name in ("AWS_ACCESS_KEY_ID", "AWS_SECRET_ACCESS_KEY", "AWS_DEFAULT_REGION",
+                  "S3_BUCKET", "S3_CATALOG_PREFIX", "S3_TEMPLATE_PREFIX"):
+    if not os.getenv(_aws_name):
+        _aws_val = _secret(_aws_name)
+        if _aws_val:
+            os.environ[_aws_name] = _aws_val
 
 SAMPLE_DIR = Path(__file__).parent / "sample_data"
 
@@ -76,15 +86,77 @@ def _read_sample(name: str) -> str:
     return ""
 
 
-def _load_catalog(uploaded, use_sample: bool) -> Catalog | None:
+@st.cache_data(show_spinner=False, ttl=120)
+def _s3_list(bucket: str, prefix: str, extensions: tuple) -> list:
+    # bucket ist nur Teil des Cache-Schlüssels; S3Store liest ihn aus der Umgebung.
+    return storage.S3Store().list_files(prefix, extensions)
+
+
+@st.cache_data(show_spinner=False, ttl=300)
+def _s3_bytes(bucket: str, key: str) -> bytes:
+    return storage.S3Store().get_bytes(key)
+
+
+def _resolve_catalog() -> Catalog | None:
+    """Zeigt die Quellenauswahl für den Katalog und liefert das geladene Catalog-Objekt."""
+    sources = (["AWS S3"] if storage.is_configured() else []) + ["Datei hochladen", "Beispielkatalog"]
+    src = st.radio("Katalog-Quelle", sources, horizontal=True, key="cat_src",
+                   index=sources.index("Beispielkatalog"))
+    catalog: Catalog | None = None
     try:
-        if uploaded is not None:
-            return Catalog.load(io.BytesIO(uploaded.getvalue()))
-        if use_sample and (SAMPLE_DIR / "produktkatalog.csv").exists():
-            return Catalog.load(SAMPLE_DIR / "produktkatalog.csv")
+        if src == "AWS S3":
+            bucket = os.getenv("S3_BUCKET", "")
+            keys = _s3_list(bucket, storage.catalog_prefix(), (".csv",))
+            if keys:
+                sel = st.selectbox("Katalog in AWS S3", keys, key="cat_s3_key")
+                catalog = Catalog.load(io.BytesIO(_s3_bytes(bucket, sel)))
+            else:
+                st.info("Keine CSV-Dateien im Katalog-Ordner des Buckets gefunden.")
+        elif src == "Datei hochladen":
+            up = st.file_uploader("Produktkatalog (CSV)", type=["csv"], key="catalog")
+            if up is not None:
+                catalog = Catalog.load(io.BytesIO(up.getvalue()))
+        elif (SAMPLE_DIR / "produktkatalog.csv").exists():
+            catalog = Catalog.load(SAMPLE_DIR / "produktkatalog.csv")
     except OfferGenerationError as exc:
         st.error(str(exc))
-    return None
+
+    if catalog is not None:
+        with st.expander(f"Katalogvorschau ({len(catalog)} Artikel)", expanded=False):
+            st.caption(
+                f"Erkannt – Artikelnummer: '{catalog.col_sku}', Name: '{catalog.col_name}', "
+                f"Preis: '{catalog.col_price}'"
+                + (f", Einheit: '{catalog.col_unit}'" if catalog.col_unit else "")
+                + (f", {len(catalog.spec_cols)} Spezifikationsspalten" if catalog.spec_cols else "")
+            )
+            st.dataframe(catalog.preview_df(), use_container_width=True, hide_index=True)
+    return catalog
+
+
+def _resolve_template() -> str:
+    """Zeigt die Quellenauswahl für die Vorlage und liefert den extrahierten Text."""
+    sources = (["AWS S3"] if storage.is_configured() else []) + ["Datei hochladen", "Keine"]
+    src = st.radio("Vorlage-Quelle", sources, horizontal=True, key="tpl_src",
+                   index=sources.index("Keine"))
+    text = ""
+    try:
+        if src == "AWS S3":
+            bucket = os.getenv("S3_BUCKET", "")
+            keys = _s3_list(bucket, storage.template_prefix(), (".pdf",))
+            if keys:
+                sel = st.selectbox("Vorlage in AWS S3", keys, key="tpl_s3_key")
+                text = extract_pdf_text(io.BytesIO(_s3_bytes(bucket, sel)))
+                st.caption(f"📎 Vorlage gelesen: {len(text)} Zeichen")
+            else:
+                st.info("Keine PDF-Vorlagen im Vorlagen-Ordner des Buckets gefunden.")
+        elif src == "Datei hochladen":
+            up = st.file_uploader("Vorlage (PDF)", type=["pdf"], key="template")
+            if up is not None:
+                text = extract_pdf_text(io.BytesIO(up.getvalue()))
+                st.caption(f"📎 Vorlage gelesen: {len(text)} Zeichen")
+    except OfferGenerationError as exc:
+        st.error(str(exc))
+    return text
 
 
 # --------------------------------------------------------------------------
@@ -124,6 +196,24 @@ with st.sidebar.expander("Eigene Firmendaten (Briefkopf)", expanded=False):
     c_tax = st.text_input("Steuernummer/USt-IdNr.", value=CompanyInfo.tax_id)
     c_bank = st.text_input("Bankverbindung", value=CompanyInfo().bank)
 
+with st.sidebar.expander("AWS S3 (Produktdaten & Vorlagen)", expanded=False):
+    _s3_bucket_in = st.text_input("Bucket-Name", value=os.getenv("S3_BUCKET", ""))
+    _s3_region_in = st.text_input("Region",
+                                  value=os.getenv("AWS_DEFAULT_REGION", "") or "eu-central-1")
+    _s3_key_in = st.text_input("AWS Access Key ID", value="", type="password")
+    _s3_secret_in = st.text_input("AWS Secret Access Key", value="", type="password")
+    if _s3_bucket_in:
+        os.environ["S3_BUCKET"] = _s3_bucket_in.strip()
+    if _s3_region_in:
+        os.environ["AWS_DEFAULT_REGION"] = _s3_region_in.strip()
+    if _s3_key_in:
+        os.environ["AWS_ACCESS_KEY_ID"] = _s3_key_in.strip()
+    if _s3_secret_in:
+        os.environ["AWS_SECRET_ACCESS_KEY"] = _s3_secret_in.strip()
+    st.caption("✅ Mit S3 verbunden" if storage.is_configured()
+               else "Nicht konfiguriert (optional – Upload/Beispiel funktionieren weiter). "
+               "Anleitung: AWS_SETUP.md")
+
 
 def build_settings() -> Settings:
     company = CompanyInfo(
@@ -155,14 +245,11 @@ st.caption(
 left, right = st.columns(2)
 
 with left:
-    st.subheader("1 · Produktkatalog (CSV)")
-    catalog_file = st.file_uploader("Produktkatalog hochladen", type=["csv"],
-                                    key="catalog")
-    use_sample_catalog = st.checkbox("Beispielkatalog verwenden", value=True,
-                                     help="Nutzt sample_data/produktkatalog.csv")
+    st.subheader("1 · Produktkatalog")
+    catalog = _resolve_catalog()
 
-    st.subheader("2 · Beispiel-Angebot als Vorlage (PDF, optional)")
-    template_file = st.file_uploader("Vorlage hochladen", type=["pdf"], key="template")
+    st.subheader("2 · Beispiel-Angebot als Vorlage (optional)")
+    template_text = _resolve_template()
 
 with right:
     st.subheader("3 · Kundenanfrage (E-Mail)")
@@ -182,23 +269,6 @@ with right:
         height=260,
         placeholder="Sehr geehrte Damen und Herren, wir benötigen ein Angebot über …",
     )
-
-# Katalog laden + Vorschau
-catalog = _load_catalog(catalog_file, use_sample_catalog)
-if catalog is not None:
-    with st.expander(f"Katalogvorschau ({len(catalog)} Artikel)", expanded=False):
-        st.caption(
-            f"Erkannt – Artikelnummer: '{catalog.col_sku}', Name: '{catalog.col_name}', "
-            f"Preis: '{catalog.col_price}'"
-            + (f", Einheit: '{catalog.col_unit}'" if catalog.col_unit else "")
-            + (f", {len(catalog.spec_cols)} Spezifikationsspalten" if catalog.spec_cols else "")
-        )
-        st.dataframe(catalog.preview_df(), use_container_width=True, hide_index=True)
-
-template_text = ""
-if template_file is not None:
-    template_text = extract_pdf_text(io.BytesIO(template_file.getvalue()))
-    st.caption(f"📎 Vorlage gelesen: {len(template_text)} Zeichen Text extrahiert.")
 
 st.divider()
 generate = st.button("🚀 Angebot erstellen", type="primary", use_container_width=True)

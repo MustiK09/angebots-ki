@@ -45,8 +45,15 @@ Beim ersten Push öffnet sich ein Browser-Fenster zur GitHub-Anmeldung
      ```toml
      ANTHROPIC_API_KEY = "sk-ant-..."
      APP_PASSWORD = "dein-demo-passwort"
+
+     # Optional – Produktdaten/Vorlagen aus AWS S3 (siehe AWS_SETUP.md):
+     # AWS_ACCESS_KEY_ID = "AKIA..."
+     # AWS_SECRET_ACCESS_KEY = "..."
+     # AWS_DEFAULT_REGION = "eu-central-1"
+     # S3_BUCKET = "angebots-ki-deinname"
      ```
-     (`APP_PASSWORD` ist optional – schützt die öffentliche URL. Weglassen = offen.)
+     (`APP_PASSWORD` ist optional – schützt die öffentliche URL. Weglassen = offen.
+     Für den optionalen AWS-S3-Zugriff siehe **[AWS_SETUP.md](AWS_SETUP.md)**.)
 5. **Deploy** klicken. Nach 1–3 Minuten ist die App unter einer URL wie
    `https://<name>.streamlit.app` erreichbar.
 
